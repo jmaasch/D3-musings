@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var width = 500;
+var height = 500;
+var totalPoints = 10000;
+var pointCount = 0;
+var pointSize;
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.timer(function() {
+    for (var i = 0; i < 5; i++) {
+        // Random coordinates to currentPointPosition array.
+        if (pointCount < totalPoints) {
+            var currentPointPosition = [(Math.random() * height), (Math.random() * width)];
+            pointCount++;
+        }
+
+        // Set point size.
+        pointSize = (Math.random() * 3) << 0;
+
+        // Append point of given size, color, and position.
+        // Colors from sanzo R package (Combination 310).
+        if (pointCount % 4 == 0) {
+            svg.append("circle")
+                .attr("cx", currentPointPosition[0])
+                .attr("cy", currentPointPosition[1])
+                .attr("r", pointSize)
+                .style("fill", "#F5F5B8");
+        }
+        else if (pointCount % 4 == 1) {
+            svg.append("circle")
+                .attr("cx", currentPointPosition[0])
+                .attr("cy", currentPointPosition[1])
+                .attr("r", pointSize)
+                .style("fill", "#F2AD78");
+        }
+        else if (pointCount % 4 == 2) {
+            svg.append("circle")
+                .attr("cx", currentPointPosition[0])
+                .attr("cy", currentPointPosition[1])
+                .attr("r", pointSize)
+                .style("fill", "#718600");
+        }
+        else if (pointCount % 4 == 3) {
+            svg.append("circle")
+                .attr("cx", currentPointPosition[0])
+                .attr("cy", currentPointPosition[1])
+                .attr("r", pointSize)
+                .style("fill", "#172713");
+        }
+    }
+});
+
+</script>

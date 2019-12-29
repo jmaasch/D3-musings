@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var width = 500;
+var height = 500;
+var totalPoints = 1000;
+var pointCount = 0;
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.timer(function() {
+    for (var i = 0; i < 10; i++) {
+        if (pointCount < totalPoints) {
+            var currentPointPosition = [(Math.random() * height), (Math.random() * width)];
+            pointCount++;
+        }
+        svg.append("circle")
+            .attr("cx", currentPointPosition[0])
+            .attr("cy", currentPointPosition[1])
+            .attr("r", 2)
+            .transition()
+                .attr("r", 2);
+    }
+});
+
+</script>
